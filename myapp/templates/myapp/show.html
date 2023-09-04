@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datatable</title>
+</head>
+<body text=' ' bgcolor="pink">
+Data inserted successfully
+</body>
+<!--<center>-->
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">id</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Contanct</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+    </tr>
+  </thead>
+    </center>
+{%if key1%}
+
+    <tbody>
+  <h1>DATA TABLE</h1>
+    {% for i in key1 %}
+    <tr>
+<!--      <th scope="row">1</th>-->
+        <td>{{i.id}}</td>
+      <td>{{i.Firstname}}</td>
+      <td>{{i.Lastname}}</td>
+      <td>{{i.Email}}</td>
+      <td>{{i.Contact}}</td>
+        <td>
+            <form name="editform" action="{% url 'editpage' pk=i.id %}" method="post">
+                {%csrf_token%}
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+
+                <td>
+            <form name="deleteform" action="{% url 'delete' pk=i.id %}" method="post">
+                {%csrf_token%}
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+
+    </tr>
+    {%endfor%}
+
+    </tr>
+  <a href="http://127.0.0.1:8000/insertform/"> Go to Insert Form!</a>
+
+  </tbody>
+
+  {% endif %}
+</table>
